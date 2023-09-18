@@ -1,4 +1,3 @@
-/*
 -- Questão 1 
 SELECT id, populacao
 FROM cidade;
@@ -26,21 +25,21 @@ WHERE pc.continente='Europe'
 INTERSECT
 SELECT p.nome
 FROM paisreligiao AS pr 
-JOIN pais AS p ON p.codigo=pr.pais
-*/
+JOIN pais AS p ON p.codigo=pr.pais;
+
 -- Questão 6
 --A :={Paises e linguas}
---B :={Russo e Armenio}
---A/B := {Paises que falam russo e armenio}
+--B :={Linguas}
+--A/B := {Paises que falam todas as linguas}
 
-SELECT *
-FROM paislingua AS pl
+SELECT DISTINCT pl1.pais
+FROM   paislingua AS pl1
+WHERE  NOT EXISTS (
+    (SELECT l1.lingua  FROM lingua AS l1)
+    EXCEPT
+    (SELECT pl2.lingua FROM paislingua AS pl2 WHERE pl1.pais=pl2.pais)
+);
 
-SELECT *
-FROM lingua AS l
-WHERE l.lingua='Armenian' OR l.lingua='Russian';
-
-/*
 -- Questão 7
 SELECT c.id, c.pais
 FROM cidademar AS m
@@ -50,7 +49,7 @@ WHERE c.pais IN (
     SELECT pc.pais 
     FROM paiscontinente AS pc
     WHERE pc.continente='Asia'
-)
+);
 
 -- Questão 8
 SELECT c.id
@@ -71,4 +70,3 @@ FROM paiscontinente AS pc
 JOIN pais AS p ON p.codigo=pc.pais
 GROUP BY pc.continente
 HAVING  MIN(p.area) < MIN(p.pib);
-*/
