@@ -1,0 +1,42 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+\author{Thiago da Costa Pereira Senff}
+\title{Trabalho 01 - SQL e álgebra relacional }
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \section{Questão}
+        $ \pi_{id, populacao}(cidade) $
+
+    \section{Questão}
+        $ \sigma_{populacao<130000}(cidade) $
+
+    \section{Questão}
+        $ \pi_{id, populacao}(\sigma_{populacao<130000}(cidade)) $
+
+    \section{Questão}
+        $ cidade \bowtie_{cidade.id = cidademar.populacao} cidademar $
+
+    \section{Questão}
+        $ 
+            (\pi_{pais.nome}( \sigma_{paiscontinente.continente='Europa'}(pais\bowtie_{pais.codigo=paiscontinente.pais} paiscontinente) ) )
+            \cap 
+            (\pi_{pais.nome}(pais \bowtie_{pais.codigo=paisreligiao.pais} paisreligiao))  
+        $
+        
+    \section{Questão}
+        $
+            (\pi_{}(lingua) - ( \sigma_{pais}(paislingua)  ) )  
+            (\pi_{}(lingua))  
+            (\pi_{pais.nome}(pais \bowtie_{pais.codigo=paisreligiao.pais} paisreligiao))  
+            (\pi_{pais.nome}(pais \bowtie_{pais.codigo=paisreligiao.pais} paisreligiao))  
+        $
+
+\end{document}
+
+
+
